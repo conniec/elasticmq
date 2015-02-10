@@ -31,7 +31,7 @@ class AmazonJavaSdkTestSuite extends FunSuite with MustMatchers with BeforeAndAf
     logger.info(s"\n---\nRunning test: $currentTestName\n---\n")
 
     strictServer  = SQSRestServerBuilder
-      .withPort(9321)
+      .withPort(0)
       .withServerAddress(NodeAddress(port = 9321))
       .start()
 

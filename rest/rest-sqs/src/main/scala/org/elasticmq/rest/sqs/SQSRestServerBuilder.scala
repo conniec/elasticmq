@@ -64,13 +64,13 @@ case class TheSQSRestServerBuilder(providedActorSystem: Option[ActorSystem],
   /**
    * @param _port Port to which the server will bind.
    */
-  def withPort(_port: Int) = this.copy(port = _port)
-
+  def withPort(_port: Int) = this.copy(serverAddress = this.serverAddress.copy(port = _port), port = _port)
+  
   /**
    * @param _serverAddress Address which will be returned as the queue address. Requests to this address
    *                       should be routed to this server.
    */
-  def withServerAddress(_serverAddress: NodeAddress) = this.copy(serverAddress = _serverAddress)
+  def withServerAddress(_serverAddress: NodeAddress) = this.copy(serverAddress = _serverAddress, port = _serverAddress.port)
 
   /**
    * @param _sqsLimits Should "real" SQS limits be used (strict), or should they be relaxed where possible (regarding
